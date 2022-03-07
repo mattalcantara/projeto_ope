@@ -1,0 +1,14 @@
+regras do negocio
+RN01 Deve responder o cliente em até 24h para levantar informações
+RN02 SLA de atendimento é de 5 dias úteis. 
+RN03 SLA de atendimento urgente é de 24 a 48 horas
+RN04 Toda visita tecnica terá custo
+RN05 Todo equipamento fora da garantia deve ser pago
+RN06 O cliente tem um número de chamados que podem ser abertos em contrato
+RN07 A visita tecnica e atendimento são realizados em horário comercial de segunda a sexta das 08 as 17h00
+RN08 Cliente só pode cancelar o serviço antes da aprovação do orçamento
+RN09 O fornecedor deve entregar os materias com 3 dias de antecedencia da instalação
+NR10 Caso o material não seja entregue por motivos externos, o SLA será redefinido
+NR11 A cobrança é enviada em até 2 dias úteis após atendimento
+NR12 Caso a empresa não receba o pagamento, não havendo justificativa, o mesmo será protestado
+NR13 Reclamações devem ser direcionadas ao SAC da empresa
