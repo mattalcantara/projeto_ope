@@ -1,0 +1,33 @@
+<style>
+input-container{
+    text-align: center;
+}
+</style>
+<html>
+<body>
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container" >
+        <br/>
+        <form action="/register" method="POST">
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="Usuário" name="usuario">
+            </div>
+            <div class="input-container">
+                <i class="fa fa-envelope icon"></i>
+                <input class="input-field" type="text" placeholder="E-mail" name="email">
+            </div>
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" type="password" placeholder="Senha" name="senha">
+            </div>
+            <input type="submit" value="Cadastrar" class="btn btn-secondary">
+        </form>
+        <br/><br/>
+    </div>
+{% endblock %}
+
+
+</body>
+</html>
