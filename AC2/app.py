@@ -57,14 +57,12 @@ def do_admin_login():
     cursor = conn.cursor()
     data = cursor.execute('SELECT * FROM cadastros WHERE usuario=%s', (_usuario))
     data = cursor.fetchone()[3]
-
     if str(_senha) == str(data):
         account = True
         if account:
             session['logged_in'] = True
     else:
-        return redirect (url_for('wrong_password'))
-
+        return False
     return home()
 
 @app.route('/logout')
@@ -76,12 +74,6 @@ def logout():
 def sucess():
   return render_template("sucess.html")
 
-
-@app.route('/wrong_password')
-def wrong_password():
-    return render_template("senha_errada.html")
-
- 
 
 if __name__ == "__main__":
     app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
