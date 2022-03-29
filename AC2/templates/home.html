@@ -1,66 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    html, body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
+* {
+  box-sizing: border-box;
 }
-header {
-	width: 100%;
-	height: 40%;
-	min-height: 250px;
-	background-image: url(C:\Users\matta\Downloads\logo.bmp);
-	background-size: cover;
-    background-position: center;
-	display: flex;
-	flex-direction: column;
-	position: relative;
-}	
-nav  {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: rgba(255,0,0,0.5);
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
 }
-nav ul {
-	padding: 0;
-	display: flex;
-	align-items: center;
-	color: #fff;
+
+/* Header/logo Title */
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
 }
-nav ul li {
-	list-style: none;
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
 }
-header section {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: calc(100% - 50px);
+
+/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 }
-header section h2 {
-	text-align: center;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	color: #fff;
-    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
 }
-h1 {
-	text-align: center;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
 }
-p {
-    text-align: center;
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
 }
 </style>
-<header>
-	<nav>
-		<img src="https://placecage.com/100/50" alt="">
-	</nav>
-	<section>
-		<h1>Seja bem vindo!</h1> <br>
-	</section>
-    <p>Gostaria de fazer Login?<a href="http://127.0.0.1:5000/"> Clique aqui! </a></p> <br>
-    <p>Caso queira fazer o registro,<a href="http://127.0.0.1:5000/register"> Clique aqui.</a></p>
-</header>
-<main>
-</main>
+</head>
+<body>
+
+<div class="header">
+  <h1>MSLogos</h1>
+  <p><b>Seja bem-vindo!</b></p>
+</div>
+
+<div class="navbar">
+  <a href="#" class="active">Home</a>
+  <a href="http://127.0.0.1:5000/register">Cadastro</a>
+  <a href="http://127.0.0.1:5000/">Login</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <h2>Principais produtos</h2>
+    <div img src="https://www.mslogos.com.br/imagens/informacoes/sistema-seguranca-eletronica-01.jpg" style="height:200px;"></div>
+    <p>As melhores câmeras do mercado!</p>
+    <div img src="https://www.mslogos.com.br/imagens/informacoes/sistema-seguranca-eletronica-02.jpg" style="height:60px;"></div><br>
+    <div img src="https://www.mslogos.com.br/imagens/informacoes/sistema-seguranca-eletronica-03.jpg" style="height:60px;"></div><br>
+  </div>
+  <div class="main">
+    <h2>Sobre</h2>
+    <div img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fbr.linkedin.com%2Fcompany%2Fmslogos-seguran%25C3%25A7a-eletr%25C3%25B4nica&psig=AOvVaw18Kn1rESf0uMbM-969Uk20&ust=1648663599424000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOjLsdH06_YCFQAAAAAdAAAAABAO" style="height:200px;"></div>
+    <p>Há aproximadamente 23 anos, nasceu a MSLOGOS Segurança Eletrônica, fruto da visão de pessoas que acreditam que com criatividade, talento e tecnologia é possível oferecer soluções eficientes e inovadoras.
+
+Aliamos anos de conhecimento com às melhores tecnologias para transformar em realidade as soluções que você precisa.
+
+Possuímos sede própria na cidade de Barueri, contamos com profissionais capacitados e experientes para execução de todos os serviços que comercializamos, proporcionando a nossos cliente, sistemas com alta tecnologia, qualidade e eficiência.
+
+Trabalhamos apenas com marcas reconhecidas que proporcionam: qualidade, durabilidade, garantia, assistência e suporte técnico.</p>
+    <br>
+    <h2>MISSÃO</h2>
+    <p>Oferecer as melhores soluções em segurança eletrônica, com tecnologia de ponta, produtos e serviços de alta qualidade para empresas, comércios, residências e condomínios.</p>
+  </div>
+</div>
+
+<div class="footer">
+</div>
+
+</body>
+</html>
