@@ -94,7 +94,6 @@ def chamados():
       #print(tipo.select_by_value("Value"))
       tipo_solic = request.form['tipo']
       descr_solic = request.form['descr_solic']
-
       conn = mysql.connect()
       cursor = conn.cursor()
       query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, tipo_solic, descr_solic)" "VALUES (%s,%s,%s,%s,%s,%s)")
@@ -105,7 +104,7 @@ def chamados():
       return sucess()
     return render_template("chamado.html")
 
-@app.route('/index')
+@app.route('/index_2')
 def index_2():
   return render_template ("index_2.html")
 
