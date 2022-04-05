@@ -6,6 +6,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import Select
+from tratamentos import tratar
+
+
 
 #driver = webdriver.Chrome(ChromeDriverManager().install())
 #driver.implicitly_wait(10)
@@ -84,16 +87,16 @@ def sucess():
 @app.route('/requests', methods=['POST', 'GET'])
 def chamados():
     if request.method == "POST": 
-      nome = request.form['name-label']
-      email = request.form['email-label']
+      nome = tratar(request.form['name-label'])
+      email = request.form['email-label'].upper()
       telefone = request.form['number-label']
-      produto = request.form['answer']
+      produto = tratar(request.form['answer'])
       #tipo = (request.form.get['tipo_solic'])
       #tipo = Select(driver.find_element_by_id('tipo_solic'))
       #tipo = Select(driver.find_element("tipo_solic"))
       #print(tipo.select_by_value("Value"))
-      tipo_solic = request.form['tipo']
-      descr_solic = request.form['descr_solic']
+      tipo_solic = tratar(request.form['tipo'])
+      descr_solic = tratar(request.form['descr_solic'])
       conn = mysql.connect()
       cursor = conn.cursor()
       query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, tipo_solic, descr_solic)" "VALUES (%s,%s,%s,%s,%s,%s)")
