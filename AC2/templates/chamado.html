@@ -139,7 +139,7 @@
                <label id='number-label'>Telefone/Celular</label>
                <input type='text' id='number' placeholder='(DDD) XXXXX-XXXX' class='form-input-size' required />
            </div>
-          <div class='form-input' required>
+          <div class='form-input' id ='produto' required>
             <p>Informe o produto</p>
             <input type='radio' name='answer' id='radio-btn' value='Controle de acesso' />Controle de acesso</br>
             <input type='radio' name='answer' id='radio-btn' value='Alarmes' />Alarmes</br>
@@ -150,7 +150,7 @@
 
            <div class='form-input'>
                <p>Informe o tipo de solicitação</p>
-               <select id='dropdown' id = 'tipo_solic' class='form-input-size' required>
+               <!-- id='dropdown' --><select id='tipo_solic' class='form-input-size' required>
                    <option disabled selected value>Selecione a opção que enquadra melhor ao tipo de solicitação</option>
                    <option value='Incidente'>Incidente</option>
                    <option value='Solicitação de serviço'>Solicitação de serviço</option>

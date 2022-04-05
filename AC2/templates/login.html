@@ -1,4 +1,4 @@
-import app
+
 <style>
     * {
    box-sizing: border-box;
@@ -8,7 +8,7 @@ import app
    }
    body {
    font-family: Arial;
-   background-color: #2350e5;
+   background-color: #5443f0;
    padding: 50px;
    }
    .login {
@@ -47,7 +47,7 @@ import app
    }
    .btn {
    border: 2px solid transparent;
-   background: #3623e5;
+   background: #5443f0;
    color: #ffffff;
    font-size: 16px;
    line-height: 25px;
@@ -96,13 +96,14 @@ import app
         function validate(){
 
         if (do_admin_login() == False ){
-        alert ("Senha errada!");
+        alert ("Senha ou login errado! Tente novamente");
         window.location = "login.html"; 
           return false;
         }
         else{
           window.location = "index.html"
         }
+      }
         </script>
         <p>Não tem login? <a href="http://127.0.0.1:5000/register">Clique aqui!</a></p>
       </div>

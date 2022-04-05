@@ -1,8 +1,6 @@
 import os
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, json, url_for
 from flaskext.mysql import MySQL
-from passlib.hash import sha256_crypt
-import mysql.connector as db
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -74,6 +72,24 @@ def logout():
 def sucess():
   return render_template("sucess.html")
 
+@app.route('/requests', methods=['POST', 'GET'])
+def chamados():
+    if request.method == "POST": 
+      nome = request.form['name']
+      email = request.form['email']
+      telefone = request.form['number']
+      produto = request.form['produto']
+      tipo = request.form['tipo_solic']
+      descricao = request.form['descr_solic']
+      conn = mysql.connect()
+      cursor = conn.cursor()
+      query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, tipo, descricao)" "VALUES (%s,%s,%s,%s,%s,%s)")
+      val = (nome, email, telefone, produto, tipo, descricao)
+      cursor.execute(query, val)
+      conn.commit()
+      conn.close()
+      return sucess()
+    return render_template("chamado.html")
 
 if __name__ == "__main__":
     app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
