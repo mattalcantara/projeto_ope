@@ -92,20 +92,23 @@ def chamados():
       #tipo = Select(driver.find_element_by_id('tipo_solic'))
       #tipo = Select(driver.find_element("tipo_solic"))
       #print(tipo.select_by_value("Value"))
-
+      tipo_solic = request.form['tipo']
       descr_solic = request.form['descr_solic']
 
       conn = mysql.connect()
       cursor = conn.cursor()
-      print(nome, email, telefone, produto,  descr_solic)
-      print('olá ============================================ ')
-      query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, descr_solic)" "VALUES (%s,%s,%s,%s,%s)")
-      val = (nome, email, telefone, produto,  descr_solic)
+      query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, tipo_solic, descr_solic)" "VALUES (%s,%s,%s,%s,%s,%s)")
+      val = (nome, email, telefone, produto, tipo_solic, descr_solic)
       cursor.execute(query, val)
       conn.commit()
       conn.close()
       return sucess()
     return render_template("chamado.html")
+
+@app.route('/index')
+def index_2():
+  return render_template ("index_2.html")
+
 
 if __name__ == "__main__":
     app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
