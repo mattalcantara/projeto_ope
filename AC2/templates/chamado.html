@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" type="text/css" href="C:\Users\matta\OneDrive\Documentos\GitHub\projeto_ope\AC2\css\style.css">
    <title>Abertura de chamado</title>
    <style>
       html{
@@ -120,48 +120,45 @@
 <body>
    <div class="container">
        <header>
-           <h1 id='title'><img src="images/Logo_Mslogos.jpeg" width="50%" height="50%"></h1>
+           <h1 id='title'><img src="AC2\templates\images\Logo_Mslogos.jpeg" width="50%" height="50%"></h1>
            <p id='description'>
               Preencha todos os campos para conseguirmos te ajudar
            </p>
        </header>
-
-       <form id='survey-form'>
+       <form action="/requests" id='survey-form' method="POST">
            <div class='form-input'>
                <label id='name-label'>Nome</label>
-               <input type='text' id='name' placeholder='Informe seu nome completo' class='form-input-size' required />
+               <input type='text' placeholder='Informe seu nome completo' name = 'name-label' class='form-input-size' required />
            </div>
            <div class='form-input'>
                <label id='email-label'>E-mail</label>
-               <input type='email' id='email' placeholder='Informe um e-mail válido' class='form-input-size' required />
+               <input type='email' placeholder='Informe um e-mail válido' name ='email-label' class='form-input-size' required />
            </div>
            <div class='form-input'>
                <label id='number-label'>Telefone/Celular</label>
-               <input type='text' id='number' placeholder='(DDD) XXXXX-XXXX' class='form-input-size' required />
+               <input type='text' placeholder='(DDD) XXXXX-XXXX' name = 'number-label' class='form-input-size' required />
            </div>
           <div class='form-input' id ='produto' required>
             <p>Informe o produto</p>
-            <input type='radio' name='answer' id='radio-btn' value='Controle de acesso' />Controle de acesso</br>
-            <input type='radio' name='answer' id='radio-btn' value='Alarmes' />Alarmes</br>
-            <input type='radio' name='answer' id='radio-btn' value='Gravadores (CFTV)' />Gravadores (CFTV)</br>
-            <input type='radio' name='answer' id='radio-btn' value='Câmeras(CFTV)' />Câmeras(CFTV)</br>
-            <input type='radio' name='answer' id='radio-btn' value='Outros' />Outros</br>
+            <input type='radio' name='answer' id='op1' value='Controle de acesso' />Controle de acesso</br>
+            <input type='radio' name='answer' id='op2' value='Alarmes' />Alarmes</br>
+            <input type='radio' name='answer' id='op3' value='Gravadores (CFTV)' />Gravadores (CFTV)</br>
+            <input type='radio' name='answer' id='op4' value='Câmeras(CFTV)' />Câmeras(CFTV)</br>
+            <input type='radio' name='answer' id='op5' value='Outros' />Outros</br>
           </div>
-
            <div class='form-input'>
                <p>Informe o tipo de solicitação</p>
-               <!-- id='dropdown' --><select id='tipo_solic' class='form-input-size' required>
+                <select name = 'tipo_solic' id='dropdown' class='form-input-size' required>
                    <option disabled selected value>Selecione a opção que enquadra melhor ao tipo de solicitação</option>
                    <option value='Incidente'>Incidente</option>
-                   <option value='Solicitação de serviço'>Solicitação de serviço</option>
-                   <option value='outros'>Outros</option>
+                   <option value='Solicitação de serviço' >Solicitação de serviço</option>
+                   <option value='Outros'>Outros</option>
                </select>
            </div>
            <div class='form-input'>
                <p>Detalhamento da solicitação</p>
-               <textarea type='text' placeholder='Insira todo o detalhamento aqui...' id = 'descr_solic'></textarea>
+               <textarea type='text' placeholder='Insira todo o detalhamento aqui...' name='descr_solic'></textarea>
            </div>
-
            <div class='form-input'>
                <button type='submit' id='submit'>Submit</button>
                <button type="reset" id="reset">Limpar Formulário</button>

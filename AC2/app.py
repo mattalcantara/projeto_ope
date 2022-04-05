@@ -1,7 +1,16 @@
 import os
+from webbrowser import Chrome
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, json, url_for
 from flaskext.mysql import MySQL
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import Select
 
+#driver = webdriver.Chrome(ChromeDriverManager().install())
+#driver.implicitly_wait(10)
+#driver.get("localhost:5000/requests")
+#driver = webdriver.Chrome(executable_path= r'C:\\Utility\\BrowserDrivers\\chromedriver.exe')
 mysql = MySQL()
 app = Flask(__name__)
 
@@ -75,16 +84,23 @@ def sucess():
 @app.route('/requests', methods=['POST', 'GET'])
 def chamados():
     if request.method == "POST": 
-      nome = request.form['name']
-      email = request.form['email']
-      telefone = request.form['number']
-      produto = request.form['produto']
-      tipo = request.form['tipo_solic']
-      descricao = request.form['descr_solic']
+      nome = request.form['name-label']
+      email = request.form['email-label']
+      telefone = request.form['number-label']
+      produto = request.form['answer']
+      #tipo = (request.form.get['tipo_solic'])
+      #tipo = Select(driver.find_element_by_id('tipo_solic'))
+      #tipo = Select(driver.find_element("tipo_solic"))
+      #print(tipo.select_by_value("Value"))
+
+      descr_solic = request.form['descr_solic']
+
       conn = mysql.connect()
       cursor = conn.cursor()
-      query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, tipo, descricao)" "VALUES (%s,%s,%s,%s,%s,%s)")
-      val = (nome, email, telefone, produto, tipo, descricao)
+      print(nome, email, telefone, produto,  descr_solic)
+      print('olá ============================================ ')
+      query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, descr_solic)" "VALUES (%s,%s,%s,%s,%s)")
+      val = (nome, email, telefone, produto,  descr_solic)
       cursor.execute(query, val)
       conn.commit()
       conn.close()
