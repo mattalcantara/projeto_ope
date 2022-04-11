@@ -1,0 +1,8 @@
+docker pull mysql:5.7
+docker run --name mysql5 -e MYSQL_ROOT_PASSWORD=0221 -p 3306:3306 -d mysql:5.7
+docker network inspect bridge 
+docker ps  
+docker exec -it e5f163104f70 /bin/bash
+create schema cadastro;
+use cadastro;
+CREATE TABLE cadastros ( id BIGINT NOT NULL AUTO_INCREMENT, usuario VARCHAR(45) NULL, email VARCHAR(45) NULL, senha VARCHAR(45) NULL, PRIMARY KEY (id));
