@@ -111,6 +111,17 @@ def chamados():
 def index_2():
   return render_template ("index_2.html")
 
+@app.route('/admin')
+def admin_login():
+  if not session.get('logged_in'):
+    return render_template('login.html')
+  else:
+    if session.get('admin') == 'S':
+      return render_template('index_2.html')
+    else:
+      flash('Você não é um Administrador! Retornando para homepage.')
+      return redirect(url_for('inicio')) 
+
 
 if __name__ == "__main__":
     app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
