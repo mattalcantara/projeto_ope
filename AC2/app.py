@@ -25,6 +25,12 @@ app.config['MYSQL_DATABASE_PORT'] = 3306
 
 mysql.init_app(app)
 
+def exec(command):
+  conn = mysql.connect()
+  cursor.execute(command)
+  cursor = conn.cursor()
+  return cursor.fetchall()
+
 @app.route('/inicio')
 def inicio():
     return render_template('home.html')
@@ -56,7 +62,17 @@ def home():
   if not session.get('logged_in'):
     return render_template('login.html')
   else:
-    return render_template('index.html')
+    if session.get('admin'):
+      conn = mysql.connect()
+      cursor = conn.cursor()
+      print(cursor.execute("SELECT * FROM solicitacoes"))
+      registros = cursor.fetchall()
+      print(registros[0])
+      for x in range(len(registros)):
+          print(registros[x])
+      return render_template('admin.html', registros = registros)
+    else:
+      return render_template('index.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def do_admin_login():
@@ -67,10 +83,16 @@ def do_admin_login():
     cursor = conn.cursor()
     data = cursor.execute('SELECT * FROM cadastros WHERE usuario=%s', (_usuario))
     data = cursor.fetchone()[3]
+    data2 = cursor.execute('SELECT * FROM cadastros WHERE usuario=%s', (_usuario))
+    data2 = cursor.fetchone()[4]
     if str(_senha) == str(data):
         account = True
         if account:
             session['logged_in'] = True
+            if str(data2) == '1':
+              session['admin'] = True
+            else:
+              session['admin'] = False
     else:
         return False
     return home()
@@ -107,20 +129,19 @@ def chamados():
       return sucess()
     return render_template("chamado.html")
 
-@app.route('/index_2')
+@app.route('/admin', methods=['POST', 'GET'])
 def index_2():
-  return render_template ("index_2.html")
-
-@app.route('/admin')
-def admin_login():
-  if not session.get('logged_in'):
-    return render_template('login.html')
+  login = request.form
+  _usuario = login['usuario']
+  data = exec('select * from cadastros where usuario = %s', (_usuario)) 
+  data = data.fetchone()[4]
+  print(_usuario)
+  print(data)
+  if data == 1:
+    return render_template("admin.html")
   else:
-    if session.get('admin') == 'S':
-      return render_template('index_2.html')
-    else:
-      flash('Você não é um Administrador! Retornando para homepage.')
-      return redirect(url_for('inicio')) 
+    flash('Você não tem acesso de administrador! Redirecionando.')
+    return home()
 
 
 if __name__ == "__main__":
