@@ -1,5 +1,4 @@
 import os
-import smtplib
 from webbrowser import Chrome
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, json, url_for
 from flaskext.mysql import MySQL
@@ -8,8 +7,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import Select
 from tratamentos import tratar
-
-
+from enviar_email import *
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -116,6 +114,7 @@ def chamados():
       cursor = conn.cursor()
       query = ("INSERT INTO solicitacoes (nome, email, telefone, produto, tipo_solic, descr_solic)" "VALUES (%s,%s,%s,%s,%s,%s)")
       val = (nome, email, telefone, produto, tipo_solic, descr_solic)
+      enviar_email(email, produto)
       cursor.execute(query, val)
       conn.commit()
       conn.close()
@@ -135,33 +134,6 @@ def index_2():
   else:
     flash('Você não tem acesso de administrador! Redirecionando.')
     return home()
-
-
-gmail_user = 'your_email@gmail.com'
-gmail_password = 'your_password'
-
-sent_from = gmail_user
-to = ['person_a@gmail.com', 'person_b@gmail.com']
-subject = 'Lorem ipsum dolor sit amet'
-body = 'consectetur adipiscing elit'
-
-email_text = """\
-From: %s
-To: %s
-Subject: %s
-%s
-""" % (sent_from, ", ".join(to), subject, body)
-try:
-    smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-    smtp_server.ehlo()
-    smtp_server.login(gmail_user, gmail_password)
-    smtp_server.sendmail(sent_from, to, email_text)
-    smtp_server.close()
-    print ("Email sent successfully!")
-except Exception as ex:
-    print ("Something went wrong….",ex)
-
-
 
 if __name__ == "__main__":
     app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
