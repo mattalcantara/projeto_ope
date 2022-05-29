@@ -1,4 +1,5 @@
 import os
+from requests import *
 from webbrowser import Chrome
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, json, url_for
 from flaskext.mysql import MySQL
@@ -26,9 +27,29 @@ def exec(command):
   cursor = conn.cursor()
   return cursor.fetchall()
 
-@app.route('/inicio')
+@app.route('/inicio', methods=['POST','GET'])
 def inicio():
     return render_template('home.html')
+
+@app.route('/cancel', methods=['POST','GET'])
+def cancel():
+  if request.method == "POST": 
+    nome = tratar(request.form['name-label'])
+    email = request.form['email-label'].upper()
+    telefone = request.form['number-label']
+    produto = tratar(request.form['answer'])
+    tipo_solic = tratar(request.form['tipo'])
+    motivo = tratar(request.form['motivo'])
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    query = ("INSERT INTO cancelamentos (nome, email, telefone, produto, tipo_solic, motivo)" "VALUES (%s,%s,%s,%s,%s,%s)")
+    val = (nome, email, telefone, produto, tipo_solic, motivo)
+    enviar_email_cancelamento(email, produto)
+    cursor.execute(query, val)
+    conn.commit()
+    conn.close()
+    return sucess()
+  return render_template('cancelamento.html')
 
 @app.route('/register', methods=['POST','GET'])
 def register():

@@ -126,14 +126,18 @@ body {
   <h1>    <div> 
     <img src="https://raw.githubusercontent.com/mattalcantara/projeto_ope/main/AC2/templates/images/Logo_Mslogos.jpeg" width="900" height="200"></div>
   </h1>
-  <p><b>Seja bem-vindo!</b></p>
+  <p><b>
+    <!-- {% block content %}
+    <p>Bem vindo de volta, {{ usuario }}!</p>
+    {% endblock %} -->
+  </b></p>
 </div>
 
 <div class="navbar">
   <a href="/inicio" class="active">Home</a>
   <a href="/register">Cadastro</a>
-  <a hrf="/">Login</a>
   <a href="/requests">Abrir Chamado</a>
+  <a href="/cancel">Cancelar Chamado</a>
 </div>
 
 <div class="row">
@@ -142,18 +146,17 @@ body {
     <div>
       <img src="https://raw.githubusercontent.com/mattalcantara/projeto_ope/main/AC2/templates/images/sistema-seguranca-eletronica-01.jpg" alt="Cinque Terre" style="height: 225px;">
     </div>
-    <p>As melhores câmeras do mercado!</p>
+    
     <div> 
     <img src="https://raw.githubusercontent.com/mattalcantara/projeto_ope/main/AC2/templates/images/sistema-seguranca-eletronica-02.jpg" style="height:350px;">
     </div><br>
     <div>
     <img src="https://raw.githubusercontent.com/mattalcantara/projeto_ope/main/AC2/templates/images/sistema-seguranca-eletronica-03.jpg" style="height:305px;">
-    </div><br>
+    <p>As melhores câmeras do mercado!</p>
+  </div><br>
   </div>
   <div class="main">
-    <h2>Sobre</h2>
-    <div> 
-    <img src="https://raw.githubusercontent.com/mattalcantara/projeto_ope/main/AC2/templates/images/Logo_Mslogos.jpeg" width="900" height="200"></div>
+    <h2>SOBRE</h2>
     <p>Há aproximadamente 23 anos, nasceu a MSLOGOS Segurança Eletrônica, fruto da visão de pessoas que acreditam que com criatividade, talento e tecnologia é possível oferecer soluções eficientes e inovadoras.
 
 Aliamos anos de conhecimento com às melhores tecnologias para transformar em realidade as soluções que você precisa.
@@ -164,6 +167,10 @@ Trabalhamos apenas com marcas reconhecidas que proporcionam: qualidade, durabili
     <br>
     <h2>MISSÃO</h2>
     <p>Oferecer as melhores soluções em segurança eletrônica, com tecnologia de ponta, produtos e serviços de alta qualidade para empresas, comércios, residências e condomínios.</p>
+    <h3>VISÃO</h3>
+    <p>Ser referência no segmento de segurança eletrônica, sendo conhecida pelo mercado como uma empresa sólida, comprometida, confiável, e com equipes capacitadas para atender seus clientes.</p>
+    <h4>VALORES</h4>
+    <p>Inovação, compromisso, confiança e qualidade do serviço prestado.    </p>
   </div>
 </div>
 
