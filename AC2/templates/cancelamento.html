@@ -127,7 +127,7 @@
               com os mesmos dados da Abertura de Chamado.
            </p>
        </header>
-       <form action="/requests" id='survey-form' method="POST">
+       <form action="/cancel" id='survey-form' method="POST">
            <div class='form-input'>
                <label id='name-label'>Nome</label>
                <input type='text' placeholder='Informe seu nome completo' name = 'name-label' class='form-input-size' required />
@@ -147,12 +147,13 @@
             <input type='radio' name='answer' id='op3' value='Gravadores (CFTV)' />Gravadores (CFTV)</br>
             <input type='radio' name='answer' id='op4' value='Câmeras(CFTV)' />Câmeras(CFTV)</br>
             <input type='radio' name='answer' id='op5' value='Outros' />Outros</br>
-          </div>
-               </select>
-           <div class='form-input'>
+          </div> 
+            <div class='form-input'>
                <p>Motivo do cancelamento</p>
                <textarea type='text' placeholder='Insira todo o detalhamento aqui...' name='motivo'></textarea>
            </div>
+               </select>
+
            <div class='form-input'>
                <button type='submit' id='submit'>Submit</button>
                <button type="reset" id="reset">Limpar Formulário</button>
